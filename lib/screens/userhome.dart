@@ -124,7 +124,7 @@ class _UserHomeState extends State<UserHome> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserTasks()));
                 },
-                child: GridTile(
+                child: const GridTile(
                     child:  Card(
                         elevation: 5,
                         color: Colors.blueGrey,
@@ -147,7 +147,7 @@ class _UserHomeState extends State<UserHome> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserChatList()));
                 },
-                child: GridTile(
+                child: const GridTile(
                     child:  Card(
                         elevation: 5,
                         color: Colors.blueGrey,
@@ -170,7 +170,7 @@ class _UserHomeState extends State<UserHome> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ClockInOut()));
                 },
-                child: GridTile(
+                child: const GridTile(
                     child:  Card(
                         elevation: 5,
                         color: Colors.blueGrey,

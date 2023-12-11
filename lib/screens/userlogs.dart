@@ -20,7 +20,7 @@ class _UserLogsState extends State<UserLogs> {
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -43,6 +43,7 @@ class _UserLogsState extends State<UserLogs> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   @override
@@ -61,7 +62,7 @@ class _UserLogsState extends State<UserLogs> {
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "UserLogs Page",
           style: TextStyle(color: Colors.white),
         ),
@@ -71,45 +72,45 @@ class _UserLogsState extends State<UserLogs> {
           itemCount: _clockList.length,
           itemBuilder: (context, index) {
             return Container(
+                width: double.infinity,
+                // color: Colors.blue,
+                height: 250,
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
                   elevation: 5,
                   shadowColor: Colors.blue,
-                  margin: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.date_range_sharp),
-                          Text("Date: " + _clockList[index].CheckDate),
+                          const Icon(Icons.date_range_sharp),
+                          Text("Date: ${_clockList[index].CheckDate}"),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.person),
-                          Text("User:"),
+                          const Icon(Icons.person),
+                          const Text("User:"),
                           Text(_clockList[index].Name)
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.punch_clock_sharp),
-                          Text("Time In: " + _clockList[index].TimeIn),
-                          Icon(Icons.punch_clock_sharp),
-                          Text("Time Out: " + _clockList[index].TimeOut)
+                          const Icon(Icons.punch_clock_sharp),
+                          Text("Time In: ${_clockList[index].TimeIn}"),
+                          const Icon(Icons.punch_clock_sharp),
+                          Text("Time Out: ${_clockList[index].TimeOut}")
                         ],
                       )
                     ],
                   ),
-                ),
-                width: double.infinity,
-                // color: Colors.blue,
-                height: 250);
+                ));
           }),
     );
   }
