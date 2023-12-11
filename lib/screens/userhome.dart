@@ -125,7 +125,7 @@ class _UserHomeState extends State<UserHome> {
                       MaterialPageRoute(builder: (context) => UserTasks()));
                 },
                 child: GridTile(
-                    child: new Card(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blueGrey,
                         child: Center(
@@ -148,7 +148,7 @@ class _UserHomeState extends State<UserHome> {
                       MaterialPageRoute(builder: (context) => UserChatList()));
                 },
                 child: GridTile(
-                    child: new Card(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blueGrey,
                         child: Center(
@@ -171,7 +171,7 @@ class _UserHomeState extends State<UserHome> {
                       MaterialPageRoute(builder: (context) => ClockInOut()));
                 },
                 child: GridTile(
-                    child: new Card(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blueGrey,
                         child: Center(
