@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:mycounter54/model/ChatMessage.dart';
+import 'package:mycounter54/model/chat_message.dart';
 import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/usermodel.dart';
 import 'package:flutter/material.dart';

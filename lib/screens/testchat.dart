@@ -1,4 +1,4 @@
-import 'package:mycounter54/model/ChatMessage.dart';
+import 'package:mycounter54/model/chat_message.dart';
 import 'package:flutter/material.dart';
 
 class TestChat extends StatelessWidget {

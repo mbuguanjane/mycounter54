@@ -1,7 +1,7 @@
-import 'package:mycounter54/model/ChatMessage.dart';
+import 'package:mycounter54/model/chat_message.dart';
 import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/usermodel.dart';
-import 'package:mycounter54/screens/chatDetail.dart';
+import 'package:mycounter54/screens/chat_detail.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/foundation.dart';
 // import 'package:flutter_speed_dial/flutter_speed_dial.dart';
