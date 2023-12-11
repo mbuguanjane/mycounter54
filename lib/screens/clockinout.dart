@@ -16,21 +16,24 @@ class ClockInOut extends StatefulWidget {
 
 class _ClockInOutState extends State<ClockInOut> {
   late String currentDate;
+  // ignore: avoid_init_to_null
   late ClockInOutModel? currentClock = null;
   Future<ClockInOutModel?> checkClockInOut() async {
     var now = DateTime.now();
     var formatterDate = DateFormat('yyyy-MM-dd');
     var formatterTime = DateFormat('kk:mm');
     String actualDate = formatterDate.format(now);
+    // ignore: unused_local_variable
     String actualTime = formatterTime.format(now);
     // print(actualTime);
     // print(actualDate);
     var url = Uri.https('driverapi.sokoyoyacomrade.com',
+        // ignore: prefer_interpolation_to_compose_strings
         '/api/UserLogs/' + loginUser!.userid.toString() + "/" + actualDate);
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -46,19 +49,22 @@ class _ClockInOutState extends State<ClockInOut> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   ClockOut(context, id) async {
     var now = DateTime.now();
     var formatterDate = DateFormat('yyyy-MM-dd');
     var formatterTime = DateFormat('kk:mm');
+    // ignore: unused_local_variable
     String actualDate = formatterDate.format(now);
     String actualTime = formatterTime.format(now);
+    // ignore: prefer_interpolation_to_compose_strings
     var url = Uri.https('driverapi.sokoyoyacomrade.com', '/api/UserLogs/' + id);
     var response = await http.put(url, headers: {
       // 'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }, body: {
       "TimeOut": actualTime,
     });
@@ -92,7 +98,7 @@ class _ClockInOutState extends State<ClockInOut> {
     showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
@@ -101,7 +107,7 @@ class _ClockInOutState extends State<ClockInOut> {
     var response = await http.post(url, headers: {
       // 'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }, body: {
       "CheckDate": actualDate,
       "TimeIn": actualTime,
@@ -144,6 +150,7 @@ class _ClockInOutState extends State<ClockInOut> {
     var formatterDate = DateFormat('yyyy-MM-dd');
     var formatterTime = DateFormat('kk:mm');
     String actualDate = formatterDate.format(now);
+    // ignore: unused_local_variable
     String actualTime = formatterTime.format(now);
     currentDate = actualDate;
     // print(actualTime);
@@ -156,7 +163,7 @@ class _ClockInOutState extends State<ClockInOut> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey,
-        title: Text("Clock In and Out"),
+        title: const Text("Clock In and Out"),
       ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
@@ -181,24 +188,24 @@ class _ClockInOutState extends State<ClockInOut> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             elevation: 5,
             shadowColor: Colors.blue,
-            margin: EdgeInsets.all(8),
+            margin: const EdgeInsets.all(8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.date_range_sharp,
                       color: Colors.white,
                     ),
                     Text(
-                      "Date: " + currentDate,
-                      style: TextStyle(color: Colors.white),
+                      "Date: $currentDate",
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
@@ -236,7 +243,7 @@ class _ClockInOutState extends State<ClockInOut> {
                                 });
                               }
                             : null,
-                        child: Text("Clock In")),
+                        child: const Text("Clock In")),
                     ElevatedButton(
                         onPressed: currentClock?.TimeOut == "0.00"
                             ? () {
@@ -249,7 +256,7 @@ class _ClockInOutState extends State<ClockInOut> {
                                     });
                               }
                             : null,
-                        child: Text("Clock Out"))
+                        child: const Text("Clock Out"))
                   ],
                 )
               ],

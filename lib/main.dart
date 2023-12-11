@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }

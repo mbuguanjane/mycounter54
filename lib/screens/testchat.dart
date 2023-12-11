@@ -13,27 +13,27 @@ class TestChat extends StatelessWidget {
         backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               children: <Widget>[
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundImage: NetworkImage(
                       "<https://randomuser.me/api/portraits/men/5.jpg>"),
                   maxRadius: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Expanded(
@@ -41,12 +41,12 @@ class TestChat extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         "Kriss Benwat",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Text(
@@ -57,7 +57,7 @@ class TestChat extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.settings,
                   color: Colors.black54,
                 ),
@@ -71,13 +71,13 @@ class TestChat extends StatelessWidget {
           ListView.builder(
             itemCount: messages.length,
             shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            physics: NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               // ................................................................
               return Container(
                 padding:
-                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                    const EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
                 child: Align(
                   alignment: (messages[index].messageType == "receiver"
                       ? Alignment.topLeft
@@ -89,10 +89,10 @@ class TestChat extends StatelessWidget {
                           ? Colors.grey.shade200
                           : Colors.blue[200]),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Text(
                       messages[index].messageContent,
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ),
                 ),
@@ -103,7 +103,7 @@ class TestChat extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
               height: 60,
               width: double.infinity,
               color: Colors.white,
@@ -118,17 +118,17 @@ class TestChat extends StatelessWidget {
                         color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.add,
                         color: Colors.white,
                         size: 20,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                           hintText: "Write message...",
@@ -136,18 +136,18 @@ class TestChat extends StatelessWidget {
                           border: InputBorder.none),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   FloatingActionButton(
                     onPressed: () {},
-                    child: Icon(
+                    backgroundColor: Colors.blue,
+                    elevation: 0,
+                    child: const Icon(
                       Icons.send,
                       color: Colors.white,
                       size: 18,
                     ),
-                    backgroundColor: Colors.blue,
-                    elevation: 0,
                   ),
                 ],
               ),

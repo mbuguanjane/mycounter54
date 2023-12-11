@@ -3,21 +3,21 @@ import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/usermodel.dart';
 import 'package:mycounter54/screens/chatDetail.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-import 'dart:io';
-import 'package:flutter/services.dart' show ByteData, rootBundle;
-import 'package:excel/excel.dart';
-import 'package:fast_csv/fast_csv.dart' as _fast_csv;
-import 'package:file_picker/file_picker.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'dart:io';
+// import 'package:flutter/services.dart' show ByteData, rootBundle;
+// import 'package:excel/excel.dart';
+// import 'package:fast_csv/fast_csv.dart' as _fast_csv;
+// import 'package:file_picker/file_picker.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({super.key});
+  const ChatScreen({super.key});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -27,11 +27,12 @@ class _ChatScreenState extends State<ChatScreen> {
   updateChat(receiverid) async {
     //updateChat
     var url = Uri.https('driverapi.sokoyoyacomrade.com',
-        '/api/updateChat/' + receiverid.toString());
+        '/api/updateChat/$receiverid');
+    // ignore: unused_local_variable
     var response = await http.get(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -39,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // print('Response body: ${response.body}');
   }
 
+  // ignore: unused_field
   final List<ChatMessage> _chatList = <ChatMessage>[];
 
   final List<UserModel> _userList = <UserModel>[];
@@ -48,7 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
     var response = await http.get(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -64,6 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
       for (var item in parsed) {
         // print(item['Firstname']);
         if (loginUser!.userid != item['id']) {
+          // ignore: unnecessary_new
           userList.add(new UserModel(
             id: item['id'],
             name: item['name'],
@@ -79,6 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   @override
@@ -95,7 +99,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Users",
           style: TextStyle(color: Colors.white),
         ),
@@ -117,15 +121,13 @@ class _ChatScreenState extends State<ChatScreen> {
                   : null,
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(
-                    "https://randomuser.me/api/portraits/men/" +
-                        _userList[index].id.toString() +
-                        ".jpg"),
+                    "https://randomuser.me/api/portraits/men/${_userList[index].id}.jpg"),
                 maxRadius: 20,
               ),
               title: Text(_userList[index].name),
-              subtitle: Text("Hello"),
+              subtitle: const Text("Hello"),
               trailing: _userList[index].messageStatus == "unseen"
-                  ? Column(
+                  ? const Column(
                       children: [
                         Text("New message"),
                         Icon(
@@ -137,7 +139,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   : null,
             );
           },
-          separatorBuilder: (context, index) => Divider(color: Colors.blue),
+          separatorBuilder: (context, index) => const Divider(color: Colors.blue),
           itemCount: _userList.length),
     );
   }

@@ -2,12 +2,14 @@ class UserModel {
   final int id;
   final String name;
   final String email;
+  // ignore: non_constant_identifier_names
   final String UserType;
   final String messageStatus;
   UserModel(
       {required this.id,
       required this.name,
       required this.email,
+      // ignore: non_constant_identifier_names
       required this.UserType,
       required this.messageStatus});
 

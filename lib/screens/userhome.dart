@@ -14,11 +14,12 @@ class UserHome extends StatefulWidget {
 }
 
 class _UserHomeState extends State<UserHome> {
+  // ignore: non_constant_identifier_names
   Future LogutMethod(context) async {
     showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
@@ -27,7 +28,7 @@ class _UserHomeState extends State<UserHome> {
     var response = await http.post(url, headers: {
       // 'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     });
 
     // print('Response status: ${response.statusCode}');
@@ -42,7 +43,7 @@ class _UserHomeState extends State<UserHome> {
           textColor: Colors.white,
           fontSize: 16.0);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     }else{
       Navigator.of(context).pop();
       Fluttertoast.showToast(
@@ -59,7 +60,7 @@ class _UserHomeState extends State<UserHome> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
-          title: Text(
+          title: const Text(
             "User Dashboard",
             style: TextStyle(color: Colors.white),
           ),
@@ -74,8 +75,8 @@ class _UserHomeState extends State<UserHome> {
                       Container(
                         width: 50,
                         height: 50,
-                        decoration: BoxDecoration(shape: BoxShape.circle),
-                        child: CircleAvatar(
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
+                        child: const CircleAvatar(
                           backgroundColor: Colors.redAccent,
                           child: Icon(
                             Icons.check,
@@ -98,8 +99,8 @@ class _UserHomeState extends State<UserHome> {
                     onTap: () {
                       LogutMethod(context);
                     },
-                    title: Text("Log out"),
-                    trailing: Icon(Icons.logout),
+                    title: const Text("Log out"),
+                    trailing: const Icon(Icons.logout),
                   )
                 ],
               )
@@ -145,7 +146,7 @@ class _UserHomeState extends State<UserHome> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserChatList()));
+                      MaterialPageRoute(builder: (context) => const UserChatList()));
                 },
                 child: const GridTile(
                     child:  Card(
@@ -168,7 +169,7 @@ class _UserHomeState extends State<UserHome> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ClockInOut()));
+                      MaterialPageRoute(builder: (context) => const ClockInOut()));
                 },
                 child: const GridTile(
                     child:  Card(

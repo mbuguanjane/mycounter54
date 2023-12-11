@@ -18,15 +18,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool emailempty = false, passwordempty = false;
-  TextEditingController emailcontroller = new TextEditingController();
-  TextEditingController passwordcontroller = new TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
 
   Future createUser(context) async {
     if (emailcontroller.text.isNotEmpty && passwordcontroller.text.isNotEmpty) {
        showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
@@ -56,10 +56,10 @@ class _LoginScreenState extends State<LoginScreen> {
           // print(user.UserType);
           if (user.UserType == 'User') {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => UserHome()));
+                context, MaterialPageRoute(builder: (context) => const UserHome()));
           } else if (user.UserType == 'Admin') {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                context, MaterialPageRoute(builder: (context) => const HomeScreen()));
           }
           // print('User body==>: ${user.userModel.name}');
           // print('User body==>: ${user.token}');
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: 350,
           height: 350,
           child: Card(
@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
+                  const Text(
                     "Login",
                     style: TextStyle(color: Colors.blue, fontSize: 20),
                   ),
@@ -137,18 +137,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: emailcontroller,
                       decoration: InputDecoration(
                           errorText: emailempty ? "Email required" : null,
-                          border: OutlineInputBorder(),
-                          label: Text("Email"),
+                          border: const OutlineInputBorder(),
+                          label: const Text("Email"),
                           hintText: "name@gmail.com",
-                          prefixIcon: Icon(Icons.mail))),
+                          prefixIcon: const Icon(Icons.mail))),
                   TextField(
                       controller: passwordcontroller,
                       obscureText: true,
                       decoration: InputDecoration(
                           errorText: passwordempty ? "Password required" : null,
-                          border: OutlineInputBorder(),
-                          label: Text("Password"),
-                          prefixIcon: Icon(Icons.security_sharp))),
+                          border: const OutlineInputBorder(),
+                          label: const Text("Password"),
+                          prefixIcon: const Icon(Icons.security_sharp))),
                   Container(
                     width: double.infinity,
                     height: 60,
@@ -161,10 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
+                        backgroundColor: Colors.blue,
                         // fixedSize: Size(250, 50),
                       ),
-                      child: Text(
+                      child: const Text(
                         "Login",
                       ),
                     ),

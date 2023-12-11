@@ -3,12 +3,14 @@ import 'package:mycounter54/model/usermodel.dart';
 class LoginUser {
   final int userid;
   final String token;
+  // ignore: non_constant_identifier_names
   final String UserType;
   final UserModel userModel;
 
   const LoginUser(
       {required this.userid,
       required this.token,
+      // ignore: non_constant_identifier_names
       required this.UserType,
       required this.userModel});
 

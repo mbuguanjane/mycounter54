@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'dart:convert';
 import 'dart:io';
 
@@ -5,6 +6,7 @@ import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
+// ignore: must_be_immutable
 class LoadExcel extends StatelessWidget {
   LoadExcel({super.key});
   String? filePath;
@@ -20,6 +22,7 @@ class LoadExcel extends StatelessWidget {
         .toList();
     // print(fields);
 
+    // ignore: unused_local_variable
     for (var element in fields.skip(1)) {
       // print(element);
     }
@@ -29,6 +32,7 @@ class LoadExcel extends StatelessWidget {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
+      // ignore: unused_local_variable
       PlatformFile file = result.files.first;
 
       // print(file.name);
@@ -50,7 +54,7 @@ class LoadExcel extends StatelessWidget {
           //getPdfAndUpload();
           _pickleFile();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -10,11 +10,12 @@ import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  // ignore: non_constant_identifier_names
   Future LogutMethod(context) async {
     showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
     var response = await http.post(url, headers: {
       // 'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     });
 
     // print('Response status: ${response.statusCode}');
@@ -38,7 +39,7 @@ class HomeScreen extends StatelessWidget {
           textColor: Colors.white,
           fontSize: 16.0);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     }else{
       Navigator.of(context).pop();
       Fluttertoast.showToast(
@@ -55,7 +56,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Management Dashboard",
             style: TextStyle(color: Colors.white),
           ),
@@ -71,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                         width: 50,
                         height: 50,
                         decoration: BoxDecoration(shape: BoxShape.circle),
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           backgroundColor: Colors.redAccent,
                           child: Icon(
                             Icons.check,
@@ -94,8 +95,8 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       LogutMethod(context);
                     },
-                    title: Text("Log out"),
-                    trailing: Icon(Icons.logout),
+                    title: const Text("Log out"),
+                    trailing: const Icon(Icons.logout),
                   )
                 ],
               )
@@ -120,8 +121,8 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserScreen()));
                 },
-                child: GridTile(
-                    child: new Card(
+                child: const GridTile(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blue,
                         child: Center(
@@ -143,8 +144,8 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ChatScreen()));
                 },
-                child: GridTile(
-                    child: new Card(
+                child: const GridTile(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blue,
                         child: Center(
@@ -166,8 +167,8 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => TaskScreen()));
                 },
-                child: GridTile(
-                    child: new Card(
+                child: const GridTile(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blue,
                         child: Center(
@@ -189,8 +190,8 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserLogs()));
                 },
-                child: GridTile(
-                    child: new Card(
+                child: const GridTile(
+                    child:  Card(
                         elevation: 5,
                         color: Colors.blue,
                         child: Center(

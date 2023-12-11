@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'dart:convert';
 
 import 'package:mycounter54/model/ChatMessage.dart';
@@ -27,7 +28,7 @@ class _ChatDetailState extends State<ChatDetail> {
     var response = await http.get(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -45,7 +46,7 @@ class _ChatDetailState extends State<ChatDetail> {
 
         if (item["receiverID"] == widget.userReceiver.id &&
             item["senderID"] == loginUser!.userid) {
-          chatList.add(new ChatMessage(
+          chatList.add(ChatMessage(
               id: item['id'],
               messageContent: item['messageContent'],
               messageType: "sender",
@@ -56,7 +57,7 @@ class _ChatDetailState extends State<ChatDetail> {
         }
         if (item["receiverID"] == loginUser!.userid &&
             item["senderID"] == widget.userReceiver.id) {
-          chatList.add(new ChatMessage(
+          chatList.add(ChatMessage(
               id: item['id'],
               messageContent: item['messageContent'],
               messageType: "receiver",
@@ -72,6 +73,7 @@ class _ChatDetailState extends State<ChatDetail> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   createChat(context) async {
@@ -87,13 +89,14 @@ class _ChatDetailState extends State<ChatDetail> {
       var formatterDate = DateFormat('yyyy-MM-dd');
       var formatterTime = DateFormat('kk:mm');
       String actualDate = formatterDate.format(now);
+      // ignore: unused_local_variable
       String actualTime = formatterTime.format(now);
       // print(actualTime);
       // print(actualDate);
       showDialog(
           context: context,
           builder: (context) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           });
@@ -102,7 +105,7 @@ class _ChatDetailState extends State<ChatDetail> {
       var response = await http.post(url, headers: {
         // 'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + loginUser!.token,
+        'Authorization': 'Bearer ${loginUser!.token}',
       }, body: {
         "messageContent": messageController.text,
         "senderID": loginUser!.userid.toString(),
@@ -170,29 +173,27 @@ class _ChatDetailState extends State<ChatDetail> {
         backgroundColor: Colors.blue,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               children: <Widget>[
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                      "https://randomuser.me/api/portraits/men/" +
-                          widget.userReceiver.id.toString() +
-                          ".jpg"),
+                      "https://randomuser.me/api/portraits/men/${widget.userReceiver.id}.jpg"),
                   maxRadius: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Expanded(
@@ -202,22 +203,22 @@ class _ChatDetailState extends State<ChatDetail> {
                     children: <Widget>[
                       Text(
                         widget.userReceiver.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Text(
+                      const Text(
                         "Online",
                         style: TextStyle(color: Colors.white, fontSize: 13),
                       ),
                     ],
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.settings,
                   color: Colors.white,
                 ),
@@ -231,14 +232,14 @@ class _ChatDetailState extends State<ChatDetail> {
           ListView.builder(
             itemCount: _chatList.length,
             shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10, bottom: 60),
+            padding: const EdgeInsets.only(top: 10, bottom: 60),
 
             //physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               // ................................................................
               return Container(
                 padding:
-                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 60),
+                    const EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 60),
                 child: Align(
                   alignment: (_chatList[index].messageType == "receiver"
                       ? Alignment.topLeft
@@ -250,10 +251,10 @@ class _ChatDetailState extends State<ChatDetail> {
                           ? Colors.grey.shade200
                           : Colors.blue[200]),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Text(
                       _chatList[index].messageContent,
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ),
                 ),
@@ -264,7 +265,7 @@ class _ChatDetailState extends State<ChatDetail> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
               height: 60,
               width: double.infinity,
               color: Colors.white,
@@ -279,14 +280,14 @@ class _ChatDetailState extends State<ChatDetail> {
                         color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.add,
                         color: Colors.white,
                         size: 20,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Expanded(
@@ -303,11 +304,11 @@ class _ChatDetailState extends State<ChatDetail> {
                           errorText:
                               messageempty ? "please write a message." : null,
                           hintText: "Write message...",
-                          hintStyle: TextStyle(color: Colors.black54),
+                          hintStyle: const TextStyle(color: Colors.black54),
                           border: InputBorder.none),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   FloatingActionButton(
@@ -316,7 +317,8 @@ class _ChatDetailState extends State<ChatDetail> {
                       createChat(context);
                       
                     },
-                    child: Icon(
+                    // ignore: sort_child_properties_last
+                    child: const Icon(
                       Icons.send,
                       color: Colors.white,
                       size: 18,

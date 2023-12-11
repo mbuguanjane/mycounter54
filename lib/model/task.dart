@@ -1,24 +1,41 @@
+// ignore_for_file: non_constant_identifier_names, duplicate_ignore
+
+
 class TaskModel {
   int id;
+  // ignore: non_constant_identifier_names
   int Tripid;
+  // ignore: non_constant_identifier_names
   String MemberName;
+  // ignore: non_constant_identifier_names
   String PhoneNumber;
+  // ignore: non_constant_identifier_names
   String LevelofService;
+  // ignore: non_constant_identifier_names
   String DateofService;
+  // ignore: non_constant_identifier_names
   String PickUpTime;
+  // ignore: non_constant_identifier_names
   String Note;
   String DropOffAddress;
+  // ignore: non_constant_identifier_names
   String TripType;
+  // ignore: non_constant_identifier_names
   String DOB;
+  // ignore: non_constant_identifier_names
   String Miles;
   String taskStatus;
   int userid;
 
+  // ignore: duplicate_ignore
   TaskModel({
     required this.id,
+    // ignore: non_constant_identifier_names
     required this.Tripid,
     required this.MemberName,
+    // ignore: non_constant_identifier_names
     required this.PhoneNumber,
+    // ignore: non_constant_identifier_names
     required this.LevelofService,
     required this.DateofService,
     required this.PickUpTime,

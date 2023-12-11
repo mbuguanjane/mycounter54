@@ -1,8 +1,9 @@
+// ignore: file_names
 import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/task.dart';
-import 'package:mycounter54/screens/assignUser.dart';
-import 'package:mycounter54/screens/home.dart';
-import 'package:mycounter54/screens/userhome.dart';
+// import 'package:mycounter54/screens/assignUser.dart';
+// import 'package:mycounter54/screens/home.dart';
+// import 'package:mycounter54/screens/userhome.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +13,7 @@ import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserTasks extends StatefulWidget {
-  UserTasks({super.key});
+  const UserTasks({super.key});
 
   @override
   State<UserTasks> createState() => _UserTasksState();
@@ -28,6 +29,7 @@ class _UserTasksState extends State<UserTasks> {
       throw Exception('Could not launch $_url');
     }
   }
+  // ignore: prefer_typing_uninitialized_variables
   var valueChoose;
   List listItem = ["On My Way", "Arrived", "Onside", "Completed"];
   final List<TaskModel> _taskList = <TaskModel>[];
@@ -37,17 +39,17 @@ class _UserTasksState extends State<UserTasks> {
     showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
                             // Navigator.of(context).pop();
     var url = Uri.https(
-        'driverapi.sokoyoyacomrade.com', '/api/Duties/' + taskid.toString());
+        'driverapi.sokoyoyacomrade.com', '/api/Duties/$taskid');
     var response = await http.put(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }, body: {
       'TaskStatus': valueChoose.toString()
     });
@@ -55,6 +57,7 @@ class _UserTasksState extends State<UserTasks> {
     // print('Response status: ${response.statusCode}');
     // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
       Fluttertoast.showToast(
           msg: "Task Updated successfully",
@@ -63,11 +66,13 @@ class _UserTasksState extends State<UserTasks> {
           backgroundColor: Colors.grey,
           textColor: Colors.white);
       //taskList = json.decode(response.body);
+      // ignore: unused_local_variable
       var parsed = json.decode(response.body);
       // print(parsed);
       // print(parsed);
       // print("--------------------");
     } else {
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
       // print("Failed to Send");
     }
@@ -78,7 +83,7 @@ class _UserTasksState extends State<UserTasks> {
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -103,6 +108,7 @@ class _UserTasksState extends State<UserTasks> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   @override
@@ -123,7 +129,7 @@ class _UserTasksState extends State<UserTasks> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Task Page",
           style: TextStyle(color: Colors.white),
         ),
@@ -135,7 +141,7 @@ class _UserTasksState extends State<UserTasks> {
             //     'vs' +
             //     loginUser!.userid.toString());
 
-            return Container(
+            return SizedBox(
               width: double.infinity,
               height: 250,
               child: Card(
@@ -143,7 +149,7 @@ class _UserTasksState extends State<UserTasks> {
                     borderRadius: BorderRadius.circular(12)),
                 elevation: 5,
                 shadowColor: Colors.blue,
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -151,26 +157,21 @@ class _UserTasksState extends State<UserTasks> {
                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.person),
-                        Text("Tripid:\n" +
-                                _taskList[index].Tripid.toString() 
-                                ??
-                            'Tripid'),
-                        Icon(Icons.punch_clock),
-                        Text("MemberName: \n" + _taskList[index].MemberName ??
-                            'MemberName'),
+                        const Icon(Icons.person),
+                        Text("Tripid:\n${_taskList[index].Tripid}"),
+                        const Icon(Icons.punch_clock),
+                        Text("MemberName: \n${_taskList[index].MemberName}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        // ignore: prefer_const_constructors
                         Icon(Icons.place),
-                        Text("PhoneNumber:\n" +
-                                _taskList[index].PhoneNumber ??
-                            'PhoneNumber'),
+                        Text("PhoneNumber:\n${_taskList[index].PhoneNumber}"),
+                        // ignore: prefer_const_constructors
                         Icon(Icons.task),
-                        Text("Level of Service:\n" + _taskList[index].LevelofService ??
-                            'Level of Service'),
+                        Text("Level of Service:\n${_taskList[index].LevelofService}"),
                       ],
                     ),
 
@@ -178,60 +179,49 @@ class _UserTasksState extends State<UserTasks> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.person),
-                        Text("Date of Service:\n" +
-                                _taskList[index].DateofService 
-                                ??
-                            'Date of Service'),
-                        Icon(Icons.punch_clock),
+                        const Icon(Icons.person),
+                        Text("Date of Service:\n${_taskList[index].DateofService}"),
+                        const Icon(Icons.punch_clock),
                         
-                        Text("Pick Up Time: \n" + _taskList[index].PickUpTime ??
-                            'Pick Up Time'),
+                        Text("Pick Up Time: \n${_taskList[index].PickUpTime}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.place),
+                        const Icon(Icons.place),
                         GestureDetector(
                           onTap: (){
                             _launchUrl();
                           },
-                          child: Text("Drop Off Address:\n" +
-                                  _taskList[index].DropOffAddress ??
-                              'Drop Off Address'),
+                          child: Text("Drop Off Address:\n${_taskList[index].DropOffAddress}"),
                         ),
-                        Icon(Icons.task),
-                        Text("Trip Type:\n" + _taskList[index].TripType ??
-                            'Trip Type'),
+                        const Icon(Icons.task),
+                        Text("Trip Type:\n${_taskList[index].TripType}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.place),
-                        Text("DOB:\n" +
-                                _taskList[index].DOB ??
-                            'DOB'),
-                        Icon(Icons.task),
-                        Text("Miles:\n" + _taskList[index].Miles ??
-                            'Miles'),
+                        const Icon(Icons.place),
+                        Text("DOB:\n${_taskList[index].DOB}"),
+                        const Icon(Icons.task),
+                        Text("Miles:\n${_taskList[index].Miles}"),
                       ],
                     ),  
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                      
-                        Icon(Icons.task),
-                        Text("Note:\n" + _taskList[index].Note ??
-                            'Note'),
+                        const Icon(Icons.task),
+                        Text("Note:\n${_taskList[index].Note}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         DropdownButton(
-                            hint: Text("Select Task Status"),
+                            hint: const Text("Select Task Status"),
                             value: valueChoose,
                             items: listItem
                                 .map((valueItem) => DropdownMenuItem(
@@ -257,14 +247,14 @@ class _UserTasksState extends State<UserTasks> {
                                               })
                                             });
                                       },
-                            child: Text("Update Status"))
+                            child: const Text("Update Status"))
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(Icons.task_alt),
-                        Text("Task Status: " + _taskList[index].taskStatus)
+                        const Icon(Icons.task_alt),
+                        Text("Task Status: ${_taskList[index].taskStatus}")
                       ],
                     )
                   ],

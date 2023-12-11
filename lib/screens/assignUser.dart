@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'dart:convert';
 
 import 'package:mycounter54/model/loginuser.dart';
@@ -8,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 // ignore: must_be_immutable
 class AssignUser extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   var data;
   AssignUser({this.data, super.key});
 
@@ -23,7 +25,7 @@ class _AssignUserState extends State<AssignUser> {
     var response = await http.get(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -48,23 +50,25 @@ class _AssignUserState extends State<AssignUser> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
+  // ignore: non_constant_identifier_names
   AssignUser(context, userid) async {
      showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
                             // Navigator.of(context).pop();
     var url = Uri.https('driverapi.sokoyoyacomrade.com',
-        '/api/Duties/' + widget.data.toString());
+        '/api/Duties/${widget.data}');
     var response = await http.put(url, headers: {
       // 'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }, body: {
       "Userid": userid.toString(),
     });
@@ -76,7 +80,7 @@ class _AssignUserState extends State<AssignUser> {
       Navigator.of(context).pop();
       // print("Updated successfully");
       Fluttertoast.showToast(
-          msg: "User Assigned" + userid.toString(),
+          msg: "User Assigned$userid",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM, // Also possible "TOP" and "CENTER"
           backgroundColor: Colors.grey,
@@ -85,7 +89,7 @@ class _AssignUserState extends State<AssignUser> {
       Navigator.of(context).pop();
       // print("Failed to Send");
       Fluttertoast.showToast(
-          msg: "User Assigned" + userid.toString(),
+          msg: "User Assigned$userid",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM, // Also possible "TOP" and "CENTER"
           backgroundColor: Colors.grey,
@@ -107,7 +111,7 @@ class _AssignUserState extends State<AssignUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Assign User"),
+        title: const Text("Assign User"),
         backgroundColor: Colors.blue,
       ),
       body: ListView.separated(
@@ -123,7 +127,7 @@ class _AssignUserState extends State<AssignUser> {
               subtitle: Text(_userList[index].email),
             );
           },
-          separatorBuilder: (context, index) => Divider(
+          separatorBuilder: (context, index) => const Divider(
                 color: Colors.blue,
               ),
           itemCount: _userList.length),

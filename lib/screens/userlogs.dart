@@ -71,7 +71,7 @@ class _UserLogsState extends State<UserLogs> {
       body: ListView.builder(
           itemCount: _clockList.length,
           itemBuilder: (context, index) {
-            return Container(
+            return SizedBox(
                 width: double.infinity,
                 // color: Colors.blue,
                 height: 250,

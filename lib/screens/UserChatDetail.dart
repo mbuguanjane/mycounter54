@@ -1,3 +1,5 @@
+// ignore: file_names
+
 import 'dart:convert';
 
 import 'package:mycounter54/model/ChatMessage.dart';
@@ -8,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class UserChatDetail extends StatefulWidget {
   UserModel userReceiver;
   UserChatDetail({super.key, required this.userReceiver});
@@ -26,7 +29,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
     var response = await http.get(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -44,7 +47,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
 
         if (item["receiverID"] == widget.userReceiver.id &&
             item["senderID"] == loginUser!.userid) {
-          chatList.add(new ChatMessage(
+          chatList.add(ChatMessage(
               id: item['id'],
               messageContent: item['messageContent'],
               messageType: "sender",
@@ -55,7 +58,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
         }
         if (item["receiverID"] == loginUser!.userid &&
             item["senderID"] == widget.userReceiver.id) {
-          chatList.add(new ChatMessage(
+          chatList.add(ChatMessage(
               id: item['id'],
               messageContent: item['messageContent'],
               messageType: "receiver",
@@ -71,6 +74,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   createChat(context) async {
@@ -86,13 +90,14 @@ class _UserChatDetailState extends State<UserChatDetail> {
       var formatterDate = DateFormat('yyyy-MM-dd');
       var formatterTime = DateFormat('kk:mm');
       String actualDate = formatterDate.format(now);
+      // ignore: unused_local_variable
       String actualTime = formatterTime.format(now);
       // print(actualTime);
       // print(actualDate);
       showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
@@ -101,7 +106,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
       var response = await http.post(url, headers: {
         // 'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + loginUser!.token,
+        'Authorization': 'Bearer ${loginUser!.token}',
       }, body: {
         "messageContent": messageController.text,
         "senderID": loginUser!.userid.toString(),
@@ -168,29 +173,27 @@ class _UserChatDetailState extends State<UserChatDetail> {
         backgroundColor: Colors.grey,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               children: <Widget>[
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                      "https://randomuser.me/api/portraits/men/" +
-                          widget.userReceiver.id.toString() +
-                          ".jpg"),
+                      "https://randomuser.me/api/portraits/men/${widget.userReceiver.id}.jpg"),
                   maxRadius: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Expanded(
@@ -200,22 +203,22 @@ class _UserChatDetailState extends State<UserChatDetail> {
                     children: <Widget>[
                       Text(
                         widget.userReceiver.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Text(
+                      const Text(
                         "Online",
                         style: TextStyle(color: Colors.white, fontSize: 13),
                       ),
                     ],
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.settings,
                   color: Colors.white,
                 ),
@@ -229,13 +232,13 @@ class _UserChatDetailState extends State<UserChatDetail> {
           ListView.builder(
             itemCount: _chatList.length,
             //shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10, bottom: 80),
+            padding: const EdgeInsets.only(top: 10, bottom: 80),
             //physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               // ................................................................
               return Container(
                 padding:
-                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                    const EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
                 child: Align(
                   alignment: (_chatList[index].messageType == "receiver"
                       ? Alignment.topLeft
@@ -247,10 +250,10 @@ class _UserChatDetailState extends State<UserChatDetail> {
                           ? Colors.grey.shade200
                           : Colors.blue[200]),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Text(
                       _chatList[index].messageContent,
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ),
                 ),
@@ -261,7 +264,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
               height: 60,
               width: double.infinity,
               color: Colors.white,
@@ -276,14 +279,14 @@ class _UserChatDetailState extends State<UserChatDetail> {
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.add,
                         color: Colors.white,
                         size: 20,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Expanded(
@@ -300,11 +303,11 @@ class _UserChatDetailState extends State<UserChatDetail> {
                       decoration: InputDecoration(
                         errorText: messageempty?"please write a message":null,
                           hintText: "Write message...",
-                          hintStyle: TextStyle(color: Colors.black54),
+                          hintStyle: const TextStyle(color: Colors.black54),
                           border: InputBorder.none),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   FloatingActionButton(
@@ -312,13 +315,13 @@ class _UserChatDetailState extends State<UserChatDetail> {
                       createChat(context);
                      
                     },
-                    child: Icon(
+                    backgroundColor: Colors.grey,
+                    elevation: 0,
+                    child: const Icon(
                       Icons.send,
                       color: Colors.white,
                       size: 18,
                     ),
-                    backgroundColor: Colors.grey,
-                    elevation: 0,
                   ),
                 ],
               ),

@@ -10,6 +10,7 @@ class LocationWidget extends StatefulWidget {
 
 class _LocationWidgetState extends State<LocationWidget> {
   Future getCurrentLocation() async {
+    // ignore: non_constant_identifier_names
     bool ServiceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!ServiceEnabled) {
       // print(Future.error("Location Service disabled"));
@@ -24,6 +25,7 @@ class _LocationWidgetState extends State<LocationWidget> {
     if (permission == LocationPermission.deniedForever) {
       // print(Future.error("Location Permission Denied"));
     }
+    // ignore: unused_local_variable
     var location = await Geolocator.getCurrentPosition();
     // print(location);
   }
@@ -35,7 +37,7 @@ class _LocationWidgetState extends State<LocationWidget> {
         onPressed: () {
           getCurrentLocation();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

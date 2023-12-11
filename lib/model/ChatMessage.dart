@@ -1,5 +1,6 @@
+// ignore: file_names
 import 'package:mycounter54/model/loginuser.dart';
-import 'package:flutter/cupertino.dart';
+
 
 class ChatMessage {
   int id;
@@ -7,7 +8,9 @@ class ChatMessage {
   String messageType;
   int senderID;
   int receiverID;
+  // ignore: non_constant_identifier_names
   String CheckDate;
+  // ignore: non_constant_identifier_names
   String created_at;
 
   ChatMessage(
@@ -16,7 +19,9 @@ class ChatMessage {
       required this.messageType,
       required this.senderID,
       required this.receiverID,
+      // ignore: non_constant_identifier_names
       required this.CheckDate,
+      // ignore: non_constant_identifier_names
       required this.created_at});
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {

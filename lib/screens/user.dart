@@ -2,12 +2,12 @@ import 'package:csv/csv.dart';
 import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/usermodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import 'dart:io';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
+// ignore: no_leading_underscores_for_library_prefixes
 import 'package:fast_csv/fast_csv.dart' as _fast_csv;
 import 'package:file_picker/file_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,13 +16,14 @@ import 'dart:async';
 import 'dart:convert';
 
 class UserScreen extends StatefulWidget {
-  UserScreen({super.key});
+  const UserScreen({super.key});
 
   @override
   State<UserScreen> createState() => _UserScreenState();
 }
 
 class _UserScreenState extends State<UserScreen> {
+  // ignore: prefer_typing_uninitialized_variables
   var valueChoose;
   List listItem = ["Admin", "User"];
   final List<UserModel> _userList = <UserModel>[];
@@ -32,7 +33,7 @@ class _UserScreenState extends State<UserScreen> {
     var response = await http.get(url, headers: {
       //'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -55,6 +56,7 @@ class _UserScreenState extends State<UserScreen> {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
 
   Future<String> loadAsset(String path) async {
@@ -86,6 +88,7 @@ class _UserScreenState extends State<UserScreen> {
       final res = _fast_csv.parse(output);
       userlist = res;
 
+      // ignore: unused_local_variable
       for (var item in res) {
         // print(item[0]);
       }
@@ -105,6 +108,7 @@ class _UserScreenState extends State<UserScreen> {
         .toList();
     // print(fields);
 
+    // ignore: unused_local_variable
     for (var element in fields.skip(1)) {
       // print(element);
     }
@@ -119,10 +123,10 @@ class _UserScreenState extends State<UserScreen> {
       for (var row in excel.tables[table]!.rows) {
         // print("wao start here");
         // print(row.length);
-        row.forEach((element) {
-          print(element!.value);
-          rowdetail.add(element.value);
-        });
+        for (var element in row) {
+          // print(element!.value);
+          rowdetail.add(element?.value);
+        }
         // print("wao start here");
         // print(rowdetail);
       }
@@ -134,21 +138,21 @@ class _UserScreenState extends State<UserScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
                   20.0,
                 ),
               ),
             ),
-            contentPadding: EdgeInsets.only(
+            contentPadding: const EdgeInsets.only(
               top: 10.0,
             ),
-            title: Text(
+            title: const Text(
               "Create User",
               style: TextStyle(fontSize: 24.0),
             ),
-            content: Container(
+            content: SizedBox(
               height: 400,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(8.0),
@@ -157,8 +161,8 @@ class _UserScreenState extends State<UserScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Name",
                       ),
@@ -169,19 +173,19 @@ class _UserScreenState extends State<UserScreen> {
                         controller: namecontroller,
                         decoration: InputDecoration(
                             errorText: namempty ? "Name Required" : null,
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             hintText: 'Enter Name',
                             labelText: 'Name'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "User Type",
                       ),
                     ),
                     DropdownButton(
-                        hint: Text("Select Task Status"),
+                        hint: const Text("Select Task Status"),
                         value: valueChoose,
                         items: listItem
                             .map((valueItem) => DropdownMenuItem(
@@ -199,8 +203,8 @@ class _UserScreenState extends State<UserScreen> {
                         }),
 
                     // Email Here
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Email",
                       ),
@@ -211,14 +215,14 @@ class _UserScreenState extends State<UserScreen> {
                         controller: emailcontroller,
                         decoration: InputDecoration(
                             errorText: emailempty ? "Email required" : null,
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             hintText: 'Enter Email',
                             labelText: 'Email'),
                       ),
                     ),
                     // Password
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Password",
                       ),
@@ -230,7 +234,7 @@ class _UserScreenState extends State<UserScreen> {
                         obscureText: true,
                         decoration: InputDecoration(
                             errorText: passwordempty ? "Password" : null,
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             hintText: 'Enter Password',
                             labelText: 'Password'),
                       ),
@@ -251,10 +255,10 @@ class _UserScreenState extends State<UserScreen> {
                               });
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
+                          backgroundColor: Colors.blue,
                           // fixedSize: Size(250, 50),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Create",
                         ),
                       ),
@@ -278,9 +282,9 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   bool emailempty = false, passwordempty = false, namempty = false;
-  TextEditingController namecontroller = new TextEditingController();
-  TextEditingController emailcontroller = new TextEditingController();
-  TextEditingController passwordcontroller = new TextEditingController();
+  TextEditingController namecontroller =  TextEditingController();
+  TextEditingController emailcontroller =  TextEditingController();
+  TextEditingController passwordcontroller =  TextEditingController();
   Future createUser(context) async {
     if (emailcontroller.text.isNotEmpty &&
         passwordcontroller.text.isNotEmpty &&
@@ -308,6 +312,7 @@ class _UserScreenState extends State<UserScreen> {
             gravity: ToastGravity.BOTTOM, // Also possible "TOP" and "CENTER"
             backgroundColor: Colors.grey,
             textColor: Colors.white);
+        // ignore: unused_local_variable
         final Map parsed = json.decode(response.body);
       } else {
         // print("Failed to Login");
@@ -366,7 +371,7 @@ class _UserScreenState extends State<UserScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Manage Users",
           style: TextStyle(color: Colors.white),
         ),
@@ -381,18 +386,18 @@ class _UserScreenState extends State<UserScreen> {
               subtitle: Text(_userList[index].email),
             );
           },
-          separatorBuilder: (context, index) => Divider(color: Colors.black),
+          separatorBuilder: (context, index) => const Divider(color: Colors.black),
           itemCount: _userList.length),
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22),
+        animatedIconTheme: const IconThemeData(size: 22),
         backgroundColor: Colors.blue,
         visible: true,
         curve: Curves.bounceIn,
         children: [
           // FAB 1
           SpeedDialChild(
-              child: Icon(
+              child: const Icon(
                 Icons.document_scanner_sharp,
                 color: Colors.white,
               ),
@@ -407,14 +412,14 @@ class _UserScreenState extends State<UserScreen> {
                 //FilePick();
               },
               label: 'Import Excel',
-              labelStyle: TextStyle(
+              labelStyle: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                   fontSize: 16.0),
               labelBackgroundColor: Colors.blue),
           // FAB 2
           SpeedDialChild(
-              child: Icon(
+              child: const Icon(
                 Icons.person,
                 color: Colors.white,
               ),
@@ -423,7 +428,7 @@ class _UserScreenState extends State<UserScreen> {
                 showDataAlert(context);
               },
               label: 'Create User',
-              labelStyle: TextStyle(
+              labelStyle: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                   fontSize: 16.0),

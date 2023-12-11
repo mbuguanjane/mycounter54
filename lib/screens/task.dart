@@ -2,8 +2,8 @@ import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/task.dart';
 import 'package:mycounter54/model/usermodel.dart';
 import 'package:mycounter54/screens/assignUser.dart';
-import 'package:mycounter54/screens/home.dart';
-import 'package:mycounter54/screens/userhome.dart';
+// import 'package:mycounter54/screens/home.dart';
+// import 'package:mycounter54/screens/userhome.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 
 class TaskScreen extends StatefulWidget {
-  TaskScreen({super.key});
+  const TaskScreen({super.key});
 
   @override
   State<TaskScreen> createState() => _TaskScreenState();
@@ -28,6 +28,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
  Future<void> _launchUrl() async {
     const String homeLat = "37.3230";
     const String homeLng = "-122.0312";
+    // ignore: no_leading_underscores_for_local_identifiers
     final Uri _url = Uri.parse(
         "https://www.google.com/maps/search/?api=1&query=$homeLat,$homeLng");
     if (!await launchUrl(_url)) {
@@ -37,11 +38,11 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
 
   viewUser(context, userid) async {
     var url = Uri.https(
-        'driverapi.sokoyoyacomrade.com', '/api/user/' + userid.toString());
+        'driverapi.sokoyoyacomrade.com', '/api/user/$userid');
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -53,7 +54,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
       showUser(context, userModel);
     } else {
       Fluttertoast.showToast(
-          msg: "Failed to send " + response.body,
+          msg: "Failed to send ${response.body}",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM, // Also possible "TOP" and "CENTER"
           backgroundColor: Colors.grey,
@@ -63,6 +64,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
 
   getLocation()
   async {
+    // ignore: unused_local_variable
     List<Location> locations = await locationFromAddress("Gronausestraat 710, Enschede");
     // print(locations);
   }
@@ -71,32 +73,30 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
         context: context,
         builder: (context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
                   20.0,
                 ),
               ),
             ),
-            contentPadding: EdgeInsets.only(
+            contentPadding: const EdgeInsets.only(
               top: 10.0,
             ),
-            title: Text(
+            title: const Text(
               "Assign User",
               style: TextStyle(fontSize: 24.0),
             ),
-            content: Container(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(userModel.name),
-                    Text(userModel.email),
-                    Text(userModel.UserType),
-                  ],
-                ),
+            content: SingleChildScrollView(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(userModel.name),
+                  Text(userModel.email),
+                  Text(userModel.UserType),
+                ],
               ),
             ),
           );
@@ -108,7 +108,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
@@ -131,19 +131,30 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
     } else {
       // print("Failed to Send");
     }
+    return null;
   }
-
-  TextEditingController Tripid = new TextEditingController();
-  TextEditingController MemberName = new TextEditingController();
-  TextEditingController PhoneNumber = new TextEditingController();
-  TextEditingController LevelofService = new TextEditingController();
-  TextEditingController DateofService = new TextEditingController();
-  TextEditingController PickUpTime = new TextEditingController();
-  TextEditingController Note = new TextEditingController();
-  TextEditingController DropOffAddress = new TextEditingController();
-  TextEditingController TripType = new TextEditingController();
-  TextEditingController DOB = new TextEditingController();
-  TextEditingController Miles = new TextEditingController();
+  // ignore: non_constant_identifier_names
+  TextEditingController Tripid = TextEditingController();
+  // ignore: non_constant_identifier_names
+  TextEditingController MemberName =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController PhoneNumber =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController LevelofService =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController DateofService =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController PickUpTime =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController Note =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController DropOffAddress =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController TripType =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController DOB =  TextEditingController();
+    // ignore: non_constant_identifier_names
+  TextEditingController Miles =  TextEditingController();
   
   clearFields()
   {
@@ -259,7 +270,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
       showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
+                              return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             });
@@ -268,7 +279,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
     var response = await http.post(url, headers: {
       // 'Content-Type': 'application/json',
       // 'Accept': 'application/json',
-      'Authorization': 'Bearer ' + loginUser!.token,
+      'Authorization': 'Bearer ${loginUser!.token}',
     }, body: {
       "Tripid": Tripid.text,
       "MemberName": MemberName.text,
@@ -316,21 +327,21 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
         context: context,
         builder: (context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
                   20.0,
                 ),
               ),
             ),
-            contentPadding: EdgeInsets.only(
+            contentPadding: const EdgeInsets.only(
               top: 10.0,
             ),
-            title: Text(
+            title: const Text(
               "Create Task",
               style: TextStyle(fontSize: 24.0),
             ),
-            content: Container(
+            content: SizedBox(
               height: 400,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(8.0),
@@ -339,8 +350,8 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                     const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Tripid",
                       ),
@@ -349,14 +360,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: Tripid,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Trip id',
                             labelText: 'First Trip id'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Member Name",
                       ),
@@ -365,7 +376,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: MemberName,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Member Name',
                             labelText: 'First MemberName'),
@@ -373,8 +384,8 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                     ),
 
                     // Email Here
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Phone Number",
                       ),
@@ -383,15 +394,15 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: PhoneNumber,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter PhoneNumber',
                             labelText: 'Phone Number'),
                       ),
                     ),
                     // Password
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Level of Service",
                       ),
@@ -400,14 +411,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: LevelofService,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Level of Service',
                             labelText: 'Level of Service'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Date of Service",
                       ),
@@ -416,14 +427,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: DateofService,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Date of Service',
                             labelText: 'Enter Date of Service'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Pick Up Time",
                       ),
@@ -432,14 +443,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: PickUpTime,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Note',
                             labelText: 'Enter Note'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Drop Off Address",
                       ),
@@ -448,14 +459,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: DropOffAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Drop Off Address',
                             labelText: 'Enter Drop Off Address'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Trip Type",
                       ),
@@ -464,14 +475,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: TripType,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Trip Type',
                             labelText: 'Enter Trip Type'),
                       ),
                     ),
-                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                     const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "DOB",
                       ),
@@ -480,14 +491,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: DOB,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter DOB',
                             labelText: 'Enter DOB'),
                       ),
                     ),
-                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                     const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Note",
                       ),
@@ -496,14 +507,14 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: Note,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Note',
                             labelText: 'Enter Note'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Miles",
                       ),
@@ -512,7 +523,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: Miles,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Miles',
                             labelText: 'Enter Miles'),
@@ -527,10 +538,10 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                           createTask(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
+                          backgroundColor: Colors.blue,
                           // fixedSize: Size(250, 50),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Create",
                         ),
                       ),
@@ -562,7 +573,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
     // print("Mzai");
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Task Page",
           style: TextStyle(color: Colors.white),
         ),
@@ -582,33 +593,26 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                     borderRadius: BorderRadius.circular(12)),
                 elevation: 5,
                 shadowColor: Colors.blue,
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.person),
-                        Text("Tripid:\n" +
-                                _taskList[index].Tripid.toString() 
-                                ??
-                            'Tripid'),
-                        Icon(Icons.punch_clock),
-                        Text("MemberName: \n" + _taskList[index].MemberName ??
-                            'MemberName'),
+                        const Icon(Icons.person),
+                        Text("Tripid:\n${_taskList[index].Tripid}"),
+                        const Icon(Icons.punch_clock),
+                        Text("MemberName: \n${_taskList[index].MemberName}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.place),
-                        Text("PhoneNumber:\n" +
-                                _taskList[index].PhoneNumber ??
-                            'PhoneNumber'),
-                        Icon(Icons.task),
-                        Text("Level of Service:\n" + _taskList[index].LevelofService ??
-                            'Level of Service'),
+                        const Icon(Icons.place),
+                        Text("PhoneNumber:\n${_taskList[index].PhoneNumber}"),
+                        const Icon(Icons.task),
+                        Text("Level of Service:\n${_taskList[index].LevelofService}"),
                       ],
                     ),
 
@@ -616,53 +620,42 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.person),
-                        Text("Date of Service:\n" +
-                                _taskList[index].DateofService 
-                                ??
-                            'Date of Service'),
-                        Icon(Icons.punch_clock),
+                        const Icon(Icons.person),
+                        Text("Date of Service:\n${_taskList[index].DateofService}"),
+                        const Icon(Icons.punch_clock),
                         
-                        Text("Pick Up Time: \n" + _taskList[index].PickUpTime ??
-                            'Pick Up Time'),
+                        Text("Pick Up Time: \n${_taskList[index].PickUpTime}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.place),
+                        const Icon(Icons.place),
                         GestureDetector(
                           onTap: (){
                             _launchUrl();
                           },
-                          child: Text("Drop Off Address:\n" +
-                                  _taskList[index].DropOffAddress ??
-                              'Drop Off Address'),
+                          child: Text("Drop Off Address:\n${_taskList[index].DropOffAddress}"),
                         ),
-                        Icon(Icons.task),
-                        Text("Trip Type:\n" + _taskList[index].TripType ??
-                            'Trip Type'),
+                        const Icon(Icons.task),
+                        Text("Trip Type:\n${_taskList[index].TripType}"),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.place),
-                        Text("DOB:\n" +
-                                _taskList[index].DOB ??
-                            'DOB'),
-                        Icon(Icons.task),
-                        Text("Miles:\n" + _taskList[index].Miles ??
-                            'Miles'),
+                        const Icon(Icons.place),
+                        Text("DOB:\n${_taskList[index].DOB}"),
+                        const Icon(Icons.task),
+                        Text("Miles:\n${_taskList[index].Miles}"),
                       ],
                     ),  
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                      
-                        Icon(Icons.task),
-                        Text("Note:\n" + _taskList[index].Note ??
-                            'Note'),
+                        const Icon(Icons.task),
+                        Text("Note:\n${_taskList[index].Note}"),
                       ],
                     ),
                      
@@ -671,11 +664,11 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                       children: [
                         ElevatedButton(
                             style: _taskList[index].userid == 0
-                                ? ButtonStyle(
+                                ? const ButtonStyle(
                                     backgroundColor:
                                         MaterialStatePropertyAll<Color>(
                                             Colors.blue))
-                                : ButtonStyle(
+                                : const ButtonStyle(
                                     backgroundColor:
                                         MaterialStatePropertyAll<Color>(
                                             Colors.green)),
@@ -692,8 +685,8 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                                     viewUser(context, _taskList[index].userid);
                                   },
                             child: _taskList[index].userid == 0
-                                ? Text("Assign Task")
-                                : Text(
+                                ? const Text("Assign Task")
+                                : const Text(
                                     "View User",
                                   ))
                       ],
@@ -701,9 +694,9 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Icon(Icons.task_alt),
+                        const Icon(Icons.task_alt),
                         Text(
-                          "Task Status: " + _taskList[index].taskStatus,
+                          "Task Status: ${_taskList[index].taskStatus}",
                           style: TextStyle(
                               backgroundColor:
                                   _taskList[index].taskStatus == "Completed"
@@ -726,7 +719,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
           
           
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
