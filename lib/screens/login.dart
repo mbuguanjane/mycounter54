@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
             elevation: 5,
             shadowColor: Colors.blue,
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

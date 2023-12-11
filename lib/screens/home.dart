@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                       Container(
                         width: 50,
                         height: 50,
-                        decoration: BoxDecoration(shape: BoxShape.circle),
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
                         child: const CircleAvatar(
                           backgroundColor: Colors.redAccent,
                           child: Icon(
@@ -119,7 +119,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserScreen()));
+                      MaterialPageRoute(builder: (context) => const UserScreen()));
                 },
                 child: const GridTile(
                     child:  Card(
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ChatScreen()));
+                      MaterialPageRoute(builder: (context) => const ChatScreen()));
                 },
                 child: const GridTile(
                     child:  Card(
@@ -165,7 +165,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TaskScreen()));
+                      MaterialPageRoute(builder: (context) => const TaskScreen()));
                 },
                 child: const GridTile(
                     child:  Card(
@@ -188,7 +188,7 @@ class HomeScreen extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserLogs()));
+                      MaterialPageRoute(builder: (context) => const UserLogs()));
                 },
                 child: const GridTile(
                     child:  Card(
