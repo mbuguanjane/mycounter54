@@ -1,3 +1,4 @@
+// ignore: file_names
 class Album {
   final int id;
   final String title;

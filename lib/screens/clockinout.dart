@@ -52,6 +52,7 @@ class _ClockInOutState extends State<ClockInOut> {
     return null;
   }
 
+  // ignore: non_constant_identifier_names
   ClockOut(context, id) async {
     var now = DateTime.now();
     var formatterDate = DateFormat('yyyy-MM-dd');

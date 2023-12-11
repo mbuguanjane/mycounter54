@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:mycounter54/model/loginuser.dart';
 import 'package:mycounter54/model/usermodel.dart';
-import 'package:mycounter54/screens/UserChatDetail.dart';
+import 'package:mycounter54/screens/user_chat_detail.dart';
 // import 'package:mycounter54/screens/chatDetail.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/foundation.dart';

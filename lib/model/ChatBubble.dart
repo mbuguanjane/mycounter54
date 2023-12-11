@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
@@ -33,7 +34,8 @@ class ChatBubble extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Text(
               text,
-              style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              // ignore: deprecated_member_use
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: isCurrentUser ? Colors.white : Colors.black87),
             ),
           ),
