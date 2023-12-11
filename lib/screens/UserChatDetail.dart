@@ -30,8 +30,8 @@ class _UserChatDetailState extends State<UserChatDetail> {
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
 
     if (response.statusCode == 200) {
       //userList = json.decode(response.body);
@@ -65,11 +65,11 @@ class _UserChatDetailState extends State<UserChatDetail> {
               created_at: item['created_at']));
         }
       }
-      print(chatList.length);
-      print("--------------------");
+      // print(chatList.length);
+      // print("--------------------");
       return chatList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -87,8 +87,8 @@ class _UserChatDetailState extends State<UserChatDetail> {
       var formatterTime = DateFormat('kk:mm');
       String actualDate = formatterDate.format(now);
       String actualTime = formatterTime.format(now);
-      print(actualTime);
-      print(actualDate);
+      // print(actualTime);
+      // print(actualDate);
       showDialog(
                             context: context,
                             builder: (context) {
@@ -109,8 +109,8 @@ class _UserChatDetailState extends State<UserChatDetail> {
         "CheckDate": actualDate,
       });
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       if (response.statusCode == 201) {
          _chatList.clear();
                       setState(() {
@@ -136,7 +136,7 @@ class _UserChatDetailState extends State<UserChatDetail> {
             gravity: ToastGravity.BOTTOM, // Also possible "TOP" and "CENTER"
             backgroundColor: Colors.grey,
             textColor: Colors.white);
-        print("Failed to Send");
+        // print("Failed to Send");
       }
     } else {
       setState(() {

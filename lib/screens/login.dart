@@ -32,14 +32,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                             // Navigator.of(context).pop();
       var url = Uri.https('driverapi.sokoyoyacomrade.com', '/api/login');
-      print(emailcontroller.text);
+      // print(emailcontroller.text);
       var response = await http.post(url, body: {
         'email': emailcontroller.text,
         'password': passwordcontroller.text
       });
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       if (response.statusCode == 200) {
         Navigator.of(context).pop();
         Fluttertoast.showToast(
@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
         try {
           var user = LoginUser.fromJson(parsed);
           loginUser = user;
-          print(user.UserType);
+          // print(user.UserType);
           if (user.UserType == 'User') {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => UserHome()));
@@ -61,15 +61,15 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => HomeScreen()));
           }
-          print('User body==>: ${user.userModel.name}');
-          print('User body==>: ${user.token}');
-          print('User body==>: ${user.userid}');
+          // print('User body==>: ${user.userModel.name}');
+          // print('User body==>: ${user.token}');
+          // print('User body==>: ${user.userid}');
         } catch (e) {
-          print(e);
+          // print(e);
         }
       } else {
         Navigator.of(context).pop();
-        print("Failed to Login");
+        // print("Failed to Login");
         Fluttertoast.showToast(
             msg: "Login Failed",
             toastLength: Toast.LENGTH_SHORT,

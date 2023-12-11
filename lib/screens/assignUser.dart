@@ -29,8 +29,8 @@ class _AssignUserState extends State<AssignUser> {
         );
 
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       //userList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
@@ -42,11 +42,11 @@ class _AssignUserState extends State<AssignUser> {
           userList.add(UserModel.fromJson(item));
         }
       }
-      print(userList.length);
-      print("--------------------");
+      // print(userList.length);
+      // print("--------------------");
       return userList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -69,12 +69,12 @@ class _AssignUserState extends State<AssignUser> {
       "Userid": userid.toString(),
     });
 
-    print('Response status: ${response.statusCode}');
-    print("--------------------------------------------");
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print("--------------------------------------------");
+    // print('Response body: ${response.body}');
     if (response.statusCode == 201) {
       Navigator.of(context).pop();
-      print("Updated successfully");
+      // print("Updated successfully");
       Fluttertoast.showToast(
           msg: "User Assigned" + userid.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -83,7 +83,7 @@ class _AssignUserState extends State<AssignUser> {
           textColor: Colors.white);
     } else {
       Navigator.of(context).pop();
-      print("Failed to Send");
+      // print("Failed to Send");
       Fluttertoast.showToast(
           msg: "User Assigned" + userid.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -115,8 +115,8 @@ class _AssignUserState extends State<AssignUser> {
             return ListTile(
               onTap: () {
                 AssignUser(context, _userList[index].id);
-                print("whatsapp");
-                print(_userList[index].id);
+                // print("whatsapp");
+                // print(_userList[index].id);
               },
               title: Text(_userList[index].name),
               leading: Text(_userList[index].UserType),

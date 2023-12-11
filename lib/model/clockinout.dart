@@ -15,7 +15,7 @@ class ClockInOutModel {
       required this.Userid});
 
   factory ClockInOutModel.fromJson(Map<String, dynamic> json) {
-    print(json);
+    // print(json);
     return ClockInOutModel(
       id: json['id'],
       CheckDate: json['CheckDate'],

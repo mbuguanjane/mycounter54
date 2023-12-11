@@ -26,8 +26,8 @@ class HomeScreen extends StatelessWidget {
       'Authorization': 'Bearer ' + loginUser!.token,
     });
 
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       Navigator.of(context).pop();
       Fluttertoast.showToast(

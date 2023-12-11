@@ -35,8 +35,8 @@ class _UserChatListState extends State<UserChatList> {
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
   }
 
   final List<UserModel> _userList = <UserModel>[];
@@ -52,8 +52,8 @@ class _UserChatListState extends State<UserChatList> {
         );
 
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       //userList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
@@ -73,11 +73,11 @@ class _UserChatListState extends State<UserChatList> {
           }
         }
       }
-      print(userList.length);
-      print("--------------------");
+      // print(userList.length);
+      // print("--------------------");
       return userList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 

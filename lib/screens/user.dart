@@ -38,8 +38,8 @@ class _UserScreenState extends State<UserScreen> {
         );
 
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       //userList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
@@ -49,11 +49,11 @@ class _UserScreenState extends State<UserScreen> {
         // print(item['Firstname']);
         userList.add(UserModel.fromJson(item));
       }
-      print(userList.length);
-      print("--------------------");
+      // print(userList.length);
+      // print("--------------------");
       return userList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -68,15 +68,15 @@ class _UserScreenState extends State<UserScreen> {
     if (result != null) {
       PlatformFile file = result.files.first;
 
-      print(file.name);
-      print(file.bytes);
-      print(file.size);
-      print(file.extension);
-      print(file.path);
+      // print(file.name);
+      // print(file.bytes);
+      // print(file.size);
+      // print(file.extension);
+      // print(file.path);
       return file.path;
     } else {
       // User canceled the picker
-      print("Fail file upload");
+      // print("Fail file upload");
       return null;
     }
   }
@@ -87,7 +87,7 @@ class _UserScreenState extends State<UserScreen> {
       userlist = res;
 
       for (var item in res) {
-        print(item[0]);
+        // print(item[0]);
       }
     });
   }
@@ -96,17 +96,17 @@ class _UserScreenState extends State<UserScreen> {
   void _pickleFile() async {
     final result = await FilePicker.platform.pickFiles(allowMultiple: false);
     if (result == null) return;
-    print(result.files.first.path);
+    // print(result.files.first.path);
     filePath = result.files.first.path!;
     final input = File(filePath!).openRead();
     final fields = await input
         .transform(utf8.decoder)
         .transform(const CsvToListConverter())
         .toList();
-    print(fields);
+    // print(fields);
 
     for (var element in fields.skip(1)) {
-      print(element);
+      // print(element);
     }
   }
 
@@ -117,14 +117,14 @@ class _UserScreenState extends State<UserScreen> {
     List<String> rowdetail = [];
     for (var table in excel.tables.keys) {
       for (var row in excel.tables[table]!.rows) {
-        print("wao start here");
-        print(row.length);
+        // print("wao start here");
+        // print(row.length);
         row.forEach((element) {
           print(element!.value);
           rowdetail.add(element.value);
         });
-        print("wao start here");
-        print(rowdetail);
+        // print("wao start here");
+        // print(rowdetail);
       }
     }
   }
@@ -191,11 +191,11 @@ class _UserScreenState extends State<UserScreen> {
                           setState(() {
                             valueChoose = newValue.toString();
                           });
-                          print("-------------");
+                          // print("-------------");
                           setState(() {
                             valueChoose;
                           });
-                          print(valueChoose);
+                          // print(valueChoose);
                         }),
 
                     // Email Here
@@ -286,7 +286,7 @@ class _UserScreenState extends State<UserScreen> {
         passwordcontroller.text.isNotEmpty &&
         namecontroller.text.isNotEmpty) {
       var url = Uri.https('driverapi.sokoyoyacomrade.com', '/api/register');
-      print(emailcontroller.text);
+      // print(emailcontroller.text);
       var response = await http.post(
         url,
         body: {
@@ -298,8 +298,8 @@ class _UserScreenState extends State<UserScreen> {
         },
       );
 
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       if (response.statusCode == 201) {
         Navigator.of(context).pop();
         Fluttertoast.showToast(
@@ -310,7 +310,7 @@ class _UserScreenState extends State<UserScreen> {
             textColor: Colors.white);
         final Map parsed = json.decode(response.body);
       } else {
-        print("Failed to Login");
+        // print("Failed to Login");
         Fluttertoast.showToast(
             msg: "Create Fail",
             toastLength: Toast.LENGTH_SHORT,

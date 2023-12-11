@@ -33,7 +33,7 @@ class _UserTasksState extends State<UserTasks> {
   final List<TaskModel> _taskList = <TaskModel>[];
 
   Future updateStatus(taskid) async {
-    print(taskid.toString());
+    // print(taskid.toString());
     showDialog(
                             context: context,
                             builder: (context) {
@@ -52,8 +52,8 @@ class _UserTasksState extends State<UserTasks> {
       'TaskStatus': valueChoose.toString()
     });
 
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       Navigator.of(context).pop();
       Fluttertoast.showToast(
@@ -65,11 +65,11 @@ class _UserTasksState extends State<UserTasks> {
       //taskList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
-      print(parsed);
-      print("--------------------");
+      // print(parsed);
+      // print("--------------------");
     } else {
       Navigator.of(context).pop();
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -84,8 +84,8 @@ class _UserTasksState extends State<UserTasks> {
         );
 
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       //taskList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
@@ -97,11 +97,11 @@ class _UserTasksState extends State<UserTasks> {
           taskList.add(TaskModel.fromJson(item));
         }
       }
-      print(taskList);
-      print("--------------------");
+      // print(taskList);
+      // print("--------------------");
       return taskList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -117,9 +117,9 @@ class _UserTasksState extends State<UserTasks> {
 
   @override
   Widget build(BuildContext context) {
-    print("Ati nini");
-    print(_taskList?.length);
-    print("Mzai");
+    // print("Ati nini");
+    // print(_taskList?.length);
+    // print("Mzai");
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
@@ -131,9 +131,9 @@ class _UserTasksState extends State<UserTasks> {
       ),
       body: ListView.builder(
           itemBuilder: (context, index) {
-            print(_taskList[index].userid.toString() +
-                'vs' +
-                loginUser!.userid.toString());
+            // print(_taskList[index].userid.toString() +
+            //     'vs' +
+            //     loginUser!.userid.toString());
 
             return Container(
               width: double.infinity,
@@ -241,8 +241,8 @@ class _UserTasksState extends State<UserTasks> {
                               setState(() {
                                 valueChoose = newValue.toString();
                               });
-                              print("-------------");
-                              print(valueChoose);
+                              // print("-------------");
+                              // print(valueChoose);
                             }),
                         ElevatedButton(
                             onPressed:

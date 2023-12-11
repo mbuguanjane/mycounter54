@@ -26,8 +26,8 @@ class _UserLogsState extends State<UserLogs> {
         );
 
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       //taskList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
@@ -37,11 +37,11 @@ class _UserLogsState extends State<UserLogs> {
         // print(item['Firstname']);
         taskList.add(ClockInOutModel.fromJson(item));
       }
-      print(taskList.length);
-      print("--------------------");
+      // print(taskList.length);
+      // print("--------------------");
       return taskList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 

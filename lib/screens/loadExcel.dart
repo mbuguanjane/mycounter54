@@ -11,17 +11,17 @@ class LoadExcel extends StatelessWidget {
   void _pickleFile() async {
     final result = await FilePicker.platform.pickFiles(allowMultiple: false);
     if (result == null) return;
-    print(result.files.first.path);
+    // print(result.files.first.path);
     filePath = result.files.first.path!;
     final input = File(filePath!).openRead();
     final fields = await input
         .transform(utf8.decoder)
         .transform(const CsvToListConverter())
         .toList();
-    print(fields);
+    // print(fields);
 
     for (var element in fields.skip(1)) {
-      print(element);
+      // print(element);
     }
   }
 
@@ -31,14 +31,14 @@ class LoadExcel extends StatelessWidget {
     if (result != null) {
       PlatformFile file = result.files.first;
 
-      print(file.name);
-      print(file.bytes);
-      print(file.size);
-      print(file.extension);
-      print(file.path);
+      // print(file.name);
+      // print(file.bytes);
+      // print(file.size);
+      // print(file.extension);
+      // print(file.path);
     } else {
       // User canceled the picker
-      print("Fail file upload");
+      // print("Fail file upload");
     }
   }
 

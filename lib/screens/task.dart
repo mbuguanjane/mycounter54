@@ -45,8 +45,8 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       var parsed = json.decode(response.body);
       UserModel userModel = UserModel.fromJson(parsed);
@@ -64,7 +64,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
   getLocation()
   async {
     List<Location> locations = await locationFromAddress("Gronausestraat 710, Enschede");
-    print(locations);
+    // print(locations);
   }
   showUser(context, UserModel userModel) {
     showDialog(
@@ -114,8 +114,8 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
         );
 
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
       //taskList = json.decode(response.body);
       var parsed = json.decode(response.body);
       // print(parsed);
@@ -125,11 +125,11 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
         // print(item['Firstname']);
         taskList.add(TaskModel.fromJson(item));
       }
-      print(taskList.length);
-      print("--------------------");
+      // print(taskList.length);
+      // print("--------------------");
       return taskList;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -285,8 +285,8 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
       "Userid": "0",
     });
 
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 201) {
       clearFields();
       Navigator.of(context).pop();
@@ -305,7 +305,7 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
           });
     } else {
       Navigator.of(context).pop();
-      print("Failed to Send");
+      // print("Failed to Send");
     }
     }
     
@@ -557,9 +557,9 @@ class _TaskScreenState extends State<TaskScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    print("Ati nini");
-    print(_taskList?.length);
-    print("Mzai");
+    // print("Ati nini");
+    // print(_taskList?.length);
+    // print("Mzai");
     return Scaffold(
       appBar: AppBar(
         title: Text(

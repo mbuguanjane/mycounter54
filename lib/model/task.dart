@@ -31,7 +31,7 @@ class TaskModel {
     required this.taskStatus,
   });
   factory TaskModel.fromJson(Map<String, dynamic> json) {
-    print(json);
+    // print(json);
     return TaskModel(
       id: json['id'],
       Tripid: json['Tripid'],

@@ -23,8 +23,8 @@ class _ClockInOutState extends State<ClockInOut> {
     var formatterTime = DateFormat('kk:mm');
     String actualDate = formatterDate.format(now);
     String actualTime = formatterTime.format(now);
-    print(actualTime);
-    print(actualDate);
+    // print(actualTime);
+    // print(actualDate);
     var url = Uri.https('driverapi.sokoyoyacomrade.com',
         '/api/UserLogs/' + loginUser!.userid.toString() + "/" + actualDate);
     var response = await http.get(url, headers: {
@@ -34,17 +34,17 @@ class _ClockInOutState extends State<ClockInOut> {
     }
         // body: {'email': 'mbuguanjane@gmail.com', 'password': '12345678'}
         );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       //taskList = json.decode(response.body);
       var parsed = json.decode(response.body);
       ClockInOutModel clockInOutModel = ClockInOutModel.fromJson(parsed);
 
-      print("--------------------");
+      // print("--------------------");
       return clockInOutModel;
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
     }
   }
 
@@ -63,8 +63,8 @@ class _ClockInOutState extends State<ClockInOut> {
       "TimeOut": actualTime,
     });
 
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 200) {
       Fluttertoast.showToast(
           msg: "Clock Out successfully",
@@ -73,7 +73,7 @@ class _ClockInOutState extends State<ClockInOut> {
           backgroundColor: Colors.grey,
           textColor: Colors.white);
     } else {
-      print("Failed to Send");
+      // print("Failed to Send");
       Fluttertoast.showToast(
           msg: "Failed successfully",
           toastLength: Toast.LENGTH_SHORT,
@@ -109,8 +109,8 @@ class _ClockInOutState extends State<ClockInOut> {
       "Userid": loginUser?.userid.toString(),
     });
 
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    // print('Response status: ${response.statusCode}');
+    // print('Response body: ${response.body}');
     if (response.statusCode == 201) {
       Navigator.of(context).pop();
       Fluttertoast.showToast(
@@ -121,7 +121,7 @@ class _ClockInOutState extends State<ClockInOut> {
           textColor: Colors.white);
     } else {
       Navigator.of(context).pop();
-      print("Failed to Send");
+      // print("Failed to Send");
       Fluttertoast.showToast(
           msg: "Failed successfully",
           toastLength: Toast.LENGTH_SHORT,
@@ -136,7 +136,7 @@ class _ClockInOutState extends State<ClockInOut> {
     checkClockInOut().then((value) => {
           setState(() {
             currentClock = value!;
-            print(currentClock!.TimeOut);
+            // print(currentClock!.TimeOut);
           })
         });
 
@@ -146,8 +146,8 @@ class _ClockInOutState extends State<ClockInOut> {
     String actualDate = formatterDate.format(now);
     String actualTime = formatterTime.format(now);
     currentDate = actualDate;
-    print(actualTime);
-    print(actualDate);
+    // print(actualTime);
+    // print(actualDate);
     super.initState();
   }
 
@@ -230,7 +230,7 @@ class _ClockInOutState extends State<ClockInOut> {
                                   checkClockInOut().then((value) => {
                                         setState(() {
                                           currentClock = value!;
-                                          print(currentClock!.TimeOut);
+                                          // print(currentClock!.TimeOut);
                                         })
                                       });
                                 });
@@ -244,7 +244,7 @@ class _ClockInOutState extends State<ClockInOut> {
                                 checkClockInOut().then((value) => {
                                       setState(() {
                                         currentClock = value!;
-                                        print(currentClock!.TimeOut);
+                                        // print(currentClock!.TimeOut);
                                       })
                                     });
                               }
